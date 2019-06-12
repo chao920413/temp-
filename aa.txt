@@ -1,0 +1,29 @@
+		//redisTemplate.opsForZSet().incrementScore("item", item+id, 1);
+		
+	 Set<ZSetOperations.TypedTuple<Object>> set=redisTemplate.opsForZSet().reverseRangeWithScores("item", 0, 5);
+	 Iterator Iterator=set.iterator();
+	 List<Item> list=new ArrayList<Item>();
+	 if(Iterator.hasNext())
+	 {
+		 ZSetOperations.TypedTuple<Object> tuple=(TypedTuple<Object>) Iterator.next();
+		 //获取item的id
+		 long id=(long)tuple.getValue();
+		 //根据id获取item
+		 
+		 //item.getname
+		 list.add(e);
+	 }
+	 return list;
+	 
+	    @RequestMapping("/item/top5List")
+
+	    public String top5List(Model model){
+
+	        List<Item> itemList = itemService.top5List();
+
+	        model.addAttribute("itemList", itemList);
+
+	        return "/item/top5List";
+
+	    }
+		
